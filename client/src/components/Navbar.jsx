@@ -1,16 +1,16 @@
-import { HiMenuAlt4 } from 'react-icons/hi'
-import { AiOutlineClose } from 'react-icons/ai'
+import { HiMenuAlt4 } from 'react-icons/hi';
+import { AiOutlineClose } from 'react-icons/ai';
 
-import logo from './../images/logo.png'
-import { useState } from 'react'
+import logo from './../images/logo.png';
+import { useState } from 'react';
 
 const NavbarItem = ({ title, className }) => {
   return (
     <li className={`mx-4 cursor-pointer ${className}`}>
       {title}
     </li>
-  )
-}
+  );
+};
 
 const Navbar = () => {
   const [toggleMenu, setToggleMenu] = useState(false)
@@ -29,8 +29,8 @@ const Navbar = () => {
     </ul>
     <div className='flex relative'>
         {toggleMenu 
-          ? <AiOutlineClose fontsize={28} width={60} className='text-white md:hidden cursor-pointer min-h-[30px] min-w-[30px]' onClick={() => setToggleMenu(false)}/> 
-          : <HiMenuAlt4 fontsize={260} className='text-white md:hidden cursor-pointer min-h-[30px] min-w-[30px]' onClick={() => setToggleMenu(true)}/>
+          ? <AiOutlineClose fontSize={28} width={60} className='text-white md:hidden cursor-pointer min-h-[30px] min-w-[30px]' onClick={() => setToggleMenu(false)}/> 
+          : <HiMenuAlt4 fontSize={26} className='text-white md:hidden cursor-pointer min-h-[30px] min-w-[30px]' onClick={() => setToggleMenu(true)}/>
         }
         {toggleMenu && (
           <ul className='z-10 fixed top-0 -right-2 sm:p-3 sm:w-[40vw] xs:w-[50vw] w-[60vw] h-screen shadow-2xl md:hidden list-none flex flex-col justify-start items-end rounded-[1.5%] blue-glassmorphism text-white animate-slide-in'>
