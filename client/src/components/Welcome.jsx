@@ -66,7 +66,7 @@ const Welcome = () => {
               </div>
               <div className="">
                 <p className="text-white font-light text-sm select-none">
-                  Address
+                  {connectedAccount ? connectedAccount : "Address"}
                 </p>
                 <p className="text-white font-semibold text-lg mt-1 select-none">
                   Ethereum
