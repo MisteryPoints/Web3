@@ -2,9 +2,12 @@ import React, { useContext } from 'react';
 import { AiFillPlayCircle } from "react-icons/ai";
 import { SiEthereum } from 'react-icons/si';
 import { BsInfoCircle } from 'react-icons/bs';
+
 import { TransactionContext } from "../context/TransactionContext";
 
 import { Loader } from './';
+
+import { shortenAddress } from '../utils/shortenAddress';
 
 const commonStyles = 'min-h-[70px] sm:px-0 px-2 sm:min-w-[120px] flex justify-center items-center border-[0.5px] border-gray-400 text-sm font-light text-white';
 
@@ -38,16 +41,16 @@ const Welcome = () => {
             <div className={`rounded-tl-2xl ${commonStyles}`}>
               Reliability
             </div>
-            <div className={`${commonStyles}`}>
+            <div className={`sm:rounded-none rounded-tr-2xl ${commonStyles}`}>
               Security
             </div>
-            <div className={`rounded-tr-2xl ${commonStyles}`}>
+            <div className={`sm:rounded-tr-2xl rounded-none ${commonStyles}`}>
               Ethereum
             </div>
-            <div className={`rounded-bl-2xl ${commonStyles}`}>
+            <div className={`sm:rounded-bl-2xl rounded-none ${commonStyles}`}>
               Web 3.0
             </div>
-            <div className={`${commonStyles}`}>
+            <div className={`sm:rounded-none rounded-bl-2xl ${commonStyles}`}>
               Low Fees
             </div>
             <div className={`rounded-br-2xl ${commonStyles}`}>
@@ -66,7 +69,7 @@ const Welcome = () => {
               </div>
               <div className="">
                 <p className="text-white font-light text-sm select-none">
-                  {connectedAccount ? connectedAccount : "Address"}
+                  {connectedAccount ? shortenAddress(connectedAccount) : "Address"}
                 </p>
                 <p className="text-white font-semibold text-lg mt-1 select-none">
                   Ethereum
