@@ -26,16 +26,30 @@ export const TransactionProvider = ({ children }) => {
         setFormData((prevState) => ({ ...prevState, [name]: e.target.value }))
     }
 
+    const getAllTransactions = async () => {
+        try { 
+            if(!ethereum) return alert("Please install metamask");
+            const transactionContract = getEthereumContract();
+            const availableTransactions = await transactionContract.getAllTransactions();
+
+            console.log(availableTransactions);
+        } catch (error) { 
+            console.log(error);
+
+            throw new Error("No Ethereum Object.")
+        }
+    }
+
     const checkIfWalletIsConnected = async () => {
         try { 
             if(!ethereum) return alert("Please install metamask");
 
             const accounts = await ethereum.request({ method: 'eth_accounts' });
 
-            if(accounts.length){
+            if(accounts.length > 0){
                 setConnectedAccount(accounts[0]);
 
-                //getAllTransactions();
+                getAllTransactions();
             } else {
                 console.log("No account found.")
             }
@@ -44,11 +58,22 @@ export const TransactionProvider = ({ children }) => {
 
             throw new Error("No Ethereum Object.")
         }
-    };
+    }; 
 
-    useEffect(() => {
-        checkIfWalletIsConnected();
-    },[]);
+
+    const checkIfTransactionsExist = async () => {
+        try {
+            const transactionContract = getEthereumContract();
+            const transactionCount = await transactionContract.getTransactionCount();
+
+            window.localStorage.setItem("transactionCount", transactionCount);
+            
+        } catch (error) {
+            console.log(error);
+
+            throw new Error("No Ethereum Object.") 
+        }
+    }
 
     const connectWallet = async () => {
         try { 
@@ -97,6 +122,11 @@ export const TransactionProvider = ({ children }) => {
             throw new Error("No Ethereum Object.")
         }
     }
+
+    useEffect(() => {
+        checkIfWalletIsConnected();
+        checkIfTransactionsExist();
+    },[]);
 
     return (
         <TransactionContext.Provider value={{ connectWallet, connectedAccount, formData, handleChange, sendTransaction }}>
