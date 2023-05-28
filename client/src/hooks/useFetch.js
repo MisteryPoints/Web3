@@ -8,12 +8,11 @@ const useFetch = ({ keyword }) => {
   const fetchGifs = async () => {
     try {
       const response = await fetch(
-        `https://api.giphy.com/v1/gifs/search?api_key=${API_KEY}&q=${keyword
-          .split(" ")
-          .join("")}&limit=1`
+        `https://api.giphy.com/v1/gifs/search?api_key=${API_KEY}&q=${
+          keyword.split(" ")[0]
+        }&limit=1`
       );
-      const data = await response.json();
-
+      const { data } = await response.json();
       setGifURL(data[0]?.images?.downsized_medium?.url);
     } catch (error) {
       setGifURL(

@@ -18,7 +18,7 @@ const Services = () => {
   return <div className='flex flex-col lg:flex-row w-full justify-center items-center gradient-bg-services'>
     <div className='flex lg:flex-row flex-col items-center justify-between md:p-20 py-12 px-4 lg:w-1/2'>
       <div className='flex-1 flex flex-col justify-start items-center'>
-        <h1 className='text-white text-3xl sm:text-5xl py-2 text-gradient'>
+        <h1 className='text-white text-3xl sm:text-5xl py-2 text-gradient select-none'>
           Services that we 
           <br/>
           continue to improve
